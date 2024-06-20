@@ -56,7 +56,7 @@ function loadingLayerTiming(){
     loadingLayer.classList.add("d-flex")
     setTimeout(() => {
             loadingLayer.classList.replace("d-flex",'d-none')
-    }, 5000);
+    }, 1200);
 };
 
 loadingLayerTiming();
