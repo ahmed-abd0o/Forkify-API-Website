@@ -4,6 +4,8 @@ var fullReceipeBtn = document.querySelector(".publisher-receipe-container > butt
 var ingredients = document.querySelector(".full-receipe")
 var loadingLayer = document.querySelector(".loading-layer");
 var buttonsContainer = document.querySelector(".buttons-container");
+var allBtnsContainer = document.querySelector(".all-btns-container")
+var collapseBtn = document.querySelector("button.collapse")
 var leftBtns = document.querySelector(".left-btns");
 var rightBtns = document.querySelector(".right-btns");
 var moreBtns = document.querySelector("button.more-buttons");
@@ -55,20 +57,24 @@ const foodItemsWithEmojis = [
     "pepperoni 🍕", "salami 🍖", "ribs 🍖"
 ]
 
-var leftCartoona = ''
-var rightCartoona = ''
+// var leftCartoona = ''
+// var rightCartoona = ''
+var allCartoona = ''
 for(var i = 0 ; i < foodItemsWithEmojis.length ; i++){
     var createdBtn = document.createElement("button");
-    createdBtn.classList.add("btn", "btn-outline-primary",'mt-2',"fs-5","flex-shrink-0");
+    createdBtn.classList.add("btn", "btn-outline-primary",'m-2',"fs-5","flex-shrink-0");
     createdBtn.innerHTML = foodItemsWithEmojis[i]
-    if( i < foodItemsWithEmojis.length/2)
-        leftCartoona+= createdBtn.outerHTML
-    else{
-        rightCartoona+= createdBtn.outerHTML
-    }
+    // if( i < foodItemsWithEmojis.length/2)
+    //     leftCartoona+= createdBtn.outerHTML;
+    // else{
+    //     rightCartoona+= createdBtn.outerHTML;
+    // }
+    allCartoona += createdBtn.outerHTML;
 }
-leftBtns.innerHTML = leftCartoona ;
-rightBtns.innerHTML = rightCartoona ;
+
+// leftBtns.innerHTML = leftCartoona ;
+// rightBtns.innerHTML = rightCartoona ;
+allBtnsContainer.innerHTML = allCartoona ;
 
 function loadingLayerTiming(){
     loadingLayer.classList.replace("d-none", "d-flex")
@@ -91,7 +97,7 @@ searchInput.addEventListener("change",function(e){
 })
 
 
-// displaying btns
+// displaying The top five btns
 function btns(specifiedItem){
     var specifiedItemIndex = foodItemsWithEmojis.indexOf(specifiedItem);
     var cartoona = '';
@@ -116,35 +122,56 @@ function btns(specifiedItem){
 
 
 //displaying side buttons 
-moreBtns.addEventListener("click",function(e){
-    moreBtns.classList.add("d-none")
-    lessBtns.classList.remove("d-none")
-    leftBtns.classList.remove("d-none")
-    rightBtns.classList.remove("d-none")
-})
-lessBtns.addEventListener("click" , function(){
-    moreBtns.classList.remove("d-none")
-    lessBtns.classList.add("d-none")
-    leftBtns.classList.add("d-none")
-    rightBtns.classList.add("d-none")
-})
-// side buttons navigation 
-leftBtns.addEventListener("click",function(e){
-    if(!e.target.classList.contains("left-btns")){
+// moreBtns.addEventListener("click",function(e){
+//     moreBtns.classList.add("d-none")
+//     lessBtns.classList.remove("d-none")
+//     leftBtns.classList.remove("d-none")
+//     rightBtns.classList.remove("d-none")
+// })
+// lessBtns.addEventListener("click" , function(){
+//     moreBtns.classList.remove("d-none")
+//     lessBtns.classList.add("d-none")
+//     leftBtns.classList.add("d-none")
+//     rightBtns.classList.add("d-none")
+// })
+// // side buttons navigation 
+// leftBtns.addEventListener("click",function(e){
+//     if(!e.target.classList.contains("left-btns")){
+//         btns(e.target.innerHTML)
+//         fetchFood(e.target.innerHTML.split(" ")[0])
+//         .then(res=> displayRecipes(res.recipes))
+//     }
+// })
+// rightBtns.addEventListener("click",function(e){
+//     if(!e.target.classList.contains("right-btns")){
+//         btns(e.target.innerHTML)
+//         fetchFood(e.target.innerHTML.split(" ")[0])
+//         .then(res=> displayRecipes(res.recipes))
+//     }
+// })
+
+
+// navigating using buttons
+allBtnsContainer.addEventListener("click",function(e){
+    if(!e.target.classList.contains("all-btns-container")){
         btns(e.target.innerHTML)
-        fetchFood(e.target.innerHTML.split(" ")[0])
-        .then(res=> displayRecipes(res.recipes))
-    }
-})
-rightBtns.addEventListener("click",function(e){
-    if(!e.target.classList.contains("right-btns")){
-        btns(e.target.innerHTML)
+        loadingLayerTiming()
+        collapseBtn.click()
         fetchFood(e.target.innerHTML.split(" ")[0])
         .then(res=> displayRecipes(res.recipes))
     }
 })
 
-
+collapseBtn.addEventListener("click", function(){
+    if(this.getAttribute("clicked") != 1){
+        this.classList.replace("btn-outline-success" ,"btn-success");
+        this.setAttribute("clicked","1")
+    }
+    else if(this.getAttribute("clicked") == 1){
+        this.classList.replace("btn-success","btn-outline-success")
+        this.setAttribute("clicked","0")
+    }
+})
 // navigating using buttons
 buttonsContainer.addEventListener("click",function(e){
     if(!e.target.classList.contains("buttons-container")){
@@ -206,8 +233,7 @@ function displayRecipes(arr) {
 fetchFood(searchInput.value || "pizza")
 .then(function(resultArray){
     displayRecipes(resultArray.recipes)
-    if(searchInput.value == "" || searchInput.value  == "pizza")
-        btns("pizza 🍕");
+        btns(foodItemsWithEmojis.filter(item => item.includes(searchInput.value.toLowerCase()))[0])
 })
 
 
