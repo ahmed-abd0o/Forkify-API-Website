@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--==================Google Fonts================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <!--==================FONTAWESOME LINK================== -->
+    <link rel="stylesheet" href="CSS/all.min.css">
+    <!--================== BOOTSTRAP LINK ================== -->
+    <link rel="stylesheet" href="CSS/bootstrap.css">
+    <!--================== MAIN STYLE SHEET ================== -->
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="loading-layer position-fixed top-0 bottom-0 end-0 start-0 bg-light-subtle z-3 d-flex justify-content-center align-items-center">
+        <div class="loader"></div>
+    </div>
+
+
+    <main class=" mt-5">
+
+        <input type="text" class="mx-auto form-control mb-5 w-25" list="ok" placeholder="Search for different recipes">
+        
+    <datalist id="ok">
+        <option value="Carrot"></option>
+        <option value="Broccoli"></option>
+        <option value="Asparagus"></option>
+        <option value="Cauliflower"></option>
+        <option value="Corn"></option>
+        <option value="Cucumber"></option>
+        <option value="Green Pepper"></option>
+        <option value="Lettuce"></option>
+        <option value="Mushrooms"></option>
+        <option value="Onion"></option>
+        <option value="Potato"></option>
+        <option value="Pumpkin"></option>
+        <option value="Red Pepper"></option>
+        <option value="Tomato"></option>
+        <option value="Beetroot"></option>
+        <option value="Brussel Sprouts"></option>
+        <option value="Peas"></option>
+        <option value="Zucchini"></option>
+        <option value="Radish"></option>
+        <option value="Sweet Potato"></option>
+        <option value="Artichoke"></option>
+        <option value="Leek"></option>
+        <option value="Cabbage"></option>
+        <option value="Celery"></option>
+        <option value="Chili"></option>
+        <option value="Garlic"></option>
+        <option value="Basil"></option>
+        <option value="Coriander"></option>
+        <option value="Parsley"></option>
+        <option value="Dill"></option>
+        <option value="Rosemary"></option>
+        <option value="Oregano"></option>
+        <option value="Cinnamon"></option>
+        <option value="Saffron"></option>
+        <option value="Green Bean"></option>
+        <option value="Bean"></option>
+        <option value="Chickpea"></option>
+        <option value="Lentil"></option>
+        <option value="Apple"></option>
+        <option value="Apricot"></option>
+        <option value="Avocado"></option>
+        <option value="Banana"></option>
+        <option value="Blackberry"></option>
+        <option value="Blackcurrant"></option>
+        <option value="Blueberry"></option>
+        <option value="Boysenberry"></option>
+        <option value="Cherry"></option>
+        <option value="Coconut"></option>
+        <option value="Fig"></option>
+        <option value="Grape"></option>
+        <option value="Grapefruit"></option>
+        <option value="Kiwifruit"></option>
+        <option value="Lemon"></option>
+        <option value="Lime"></option>
+        <option value="Lychee"></option>
+        <option value="Mandarin"></option>
+        <option value="Mango"></option>
+        <option value="Melon"></option>
+        <option value="Nectarine"></option>
+        <option value="Orange"></option>
+        <option value="Papaya"></option>
+        <option value="Passion Fruit"></option>
+        <option value="Peach"></option>
+        <option value="Pear"></option>
+        <option value="Pineapple"></option>
+        <option value="Plum"></option>
+        <option value="Pomegranate"></option>
+        <option value="Quince"></option>
+        <option value="Raspberry"></option>
+        <option value="Strawberry"></option>
+        <option value="Watermelon"></option>
+        <option value="Salad"></option>
+        <option value="Pizza"></option>
+        <option value="Pasta"></option>
+        <option value="Popcorn"></option>
+        <option value="Lobster"></option>
+        <option value="Steak"></option>
+        <option value="BBQ"></option>
+        <option value="Pudding"></option>
+        <option value="Hamburger"></option>
+        <option value="Pie"></option>
+        <option value="Cake"></option>
+        <option value="Sausage"></option>
+        <option value="Tacos"></option>
+        <option value="Kebab"></option>
+        <option value="Poutine"></option>
+        <option value="Seafood"></option>
+        <option value="Chips"></option>
+        <option value="Fries"></option>
+        <option value="Masala"></option>
+        <option value="Paella"></option>
+        <option value="Som Tam"></option>
+        <option value="Chicken"></option>
+        <option value="Toast"></option>
+        <option value="Marzipan"></option>
+        <option value="Tofu"></option>
+        <option value="Ketchup"></option>
+        <option value="Hummus"></option>
+        <option value="Chili"></option>
+        <option value="Maple Syrup"></option>
+        <option value="Parma Ham"></option>
+        <option value="Fajitas"></option>
+        <option value="Champ"></option>
+        <option value="Lasagna"></option>
+        <option value="Poke"></option>
+        <option value="Chocolate"></option>
+        <option value="Croissant"></option>
+        <option value="Arepas"></option>
+        <option value="Bunny Chow"></option>
+        <option value="Pierogi"></option>
+        <option value="Donuts"></option>
+        <option value="Rendang"></option>
+        <option value="Sushi"></option>
+        <option value="Ice Cream"></option>
+        <option value="Duck"></option>
+        <option value="Curry"></option>
+        <option value="Beef"></option>
+        <option value="Goat"></option>
+        <option value="Lamb"></option>
+        <option value="Turkey"></option>
+        <option value="Pork"></option>
+        <option value="Fish"></option>
+        <option value="Crab"></option>
+        <option value="Bacon"></option>
+        <option value="Ham"></option>
+        <option value="Pepperoni"></option>
+        <option value="Salami"></option>
+        <option value="Ribs"></option>
+    </datalist>
+
+        <div class="buttons-container d-flex flex-wrap justify-content-center align-items-center">
+            <button class=" btn btn-primary m-2">Carrot 🥕</button>
+        </div>
+        <button class="more-buttons btn btn-outline-success mx-auto d-block mt-3">More Buttons</button>
+        <button class="less-buttons d-none btn btn-success mx-auto d-block mt-3">Less Buttons</button>
+        <div class="elbaba d-flex justify-content-evenly">
+            <div class="left-btns d-flex flex-column start-0 top-50 my-5 d-none">
+                <button class="btn btn-primary m-2">Carrot 🥕</button>
+                <button class="btn btn-primary m-2">Broccoli 🥦</button>
+                <button class="btn btn-primary m-2">Asparagus 🥬</button>
+                <button class="btn btn-primary m-2">Cauliflower 🥦</button>
+                <button class="btn btn-primary m-2">Corn 🌽</button>
+                <button class="btn btn-primary m-2">Cucumber 🥒</button>
+                <button class="btn btn-primary m-2">Green Pepper 🫑</button>
+                <button class="btn btn-primary m-2">Lettuce 🥬</button>
+                <button class="btn btn-primary m-2">Mushrooms 🍄</button>
+                <button class="btn btn-primary m-2">Onion 🧅</button>
+                <button class="btn btn-primary m-2">Potato 🥔</button>
+                <button class="btn btn-primary m-2">Pumpkin 🎃</button>
+                <button class="btn btn-primary m-2">Red Pepper 🌶️</button>
+                <button class="btn btn-primary m-2">Tomato 🍅</button>
+                <button class="btn btn-primary m-2">Beetroot 🥕</button>
+                <button class="btn btn-primary m-2">Brussel Sprouts 🥦</button>
+                <button class="btn btn-primary m-2">Peas 🥬</button>
+                <button class="btn btn-primary m-2">Zucchini 🥒</button>
+                <button class="btn btn-primary m-2">Radish 🥕</button>
+                <button class="btn btn-primary m-2">Sweet Potato 🍠</button>
+                <button class="btn btn-primary m-2">Artichoke 🥬</button>
+                <button class="btn btn-primary m-2">Leek 🥬</button>
+                <button class="btn btn-primary m-2">Cabbage 🥬</button>
+                <button class="btn btn-primary m-2">Celery 🥬</button>
+                <button class="btn btn-primary m-2">Chili 🌶️</button>
+                <button class="btn btn-primary m-2">Garlic 🧄</button>
+                <button class="btn btn-primary m-2">Basil 🌿</button>
+                <button class="btn btn-primary m-2">Coriander 🌿</button>
+            </div>
+            <div class="container mx-0">
+            <div class="row cards gy-4 mb-5 mt-2">
+                <div class="col-lg-3 col-md-4 col-12">
+                    <div class="cardo position-relative hov overflow-hidden">
+                        <div class="image-container w-100 h-100 overflow-hidden">
+                            <img src="images/post-1.jpg" class="w-100 h-100 " alt="">
+                        </div>
+                        <div class="text-container position-absolute bg-light bg-opacity-75 h-100 w-100 d-flex flex-column">
+                            <h5 class=" text-capitalize text-center mt-2 flex-grow-1 d-flex align-items-center justify-content-center">title</h5>
+                            <div class="publisher-receipe-container w-100 position-absolute bottom-0 start-0 mb-2 d-flex align-items-center justify-content-around">
+                                <div class="publisher text-center mb-2 d-flex flex-column align-items-center justify-content-center">
+                                    <h5 class="h6 w-fit-content">-- Publisher --</h5>
+                                    <a href="k" class="h6 text-capitalize">Publisher name</a>
+                                </div>
+                                <button class="btn btn-outline-danger fullReceipe">Full Recipe</button>
+                            </div>
+                        </div>
+                        <div class="h-100 d-flex flex-column justify-content-center full-receipe position-absolute top-0 d-none">
+                                <div class="ingredients-btn-container py-2 px-3 ">
+                                    <ul class="mb-2">
+                                        <li>
+                                            4 1/2 cups (20.25 ounces) unbleached high-gluten, bread, or all-purpose flour, chilled
+                                        </li>
+                                        <li>
+                                            1 3/4 (.44 ounce) teaspoons salt
+                                        </li>
+                                        <li>
+                                            1 teaspoon (.11 ounce) instant yeast
+                                        </li>
+                                        <li>
+                                            1/4 cup (2 ounces) olive oil (optional)
+                                        </li>
+                                        <li>
+                                            1 3/4 cups (14 ounces) water, ice cold (40F)
+                                        </li>
+                                        <li>
+                                            Semolina flour OR cornmeal for dusting
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-outline-info ms-auto d-block">close</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-12">
+                    <div class="cardo position-relative hov overflow-hidden">
+                        <div class="image-container w-100 h-100 overflow-hidden">
+                            <img src="images/post-1.jpg" class="w-100 h-100 " alt="">
+                        </div>
+                        <div class="text-container position-absolute bg-light bg-opacity-75 h-100 w-100 d-flex flex-column">
+                            <h5 class=" text-capitalize text-center mt-2 flex-grow-1 d-flex align-items-center justify-content-center">title</h5>
+                            <div class="publisher-receipe-container w-100 position-absolute bottom-0 start-0 mb-2 d-flex align-items-center justify-content-around">
+                                <div class="publisher text-center mb-2 d-flex flex-column align-items-center justify-content-center">
+                                    <h5 class="h6 w-fit-content">-- Publisher --</h5>
+                                    <a href="k" class="h6 text-capitalize">Publisher name</a>
+                                </div>
+                                <button class="btn btn-outline-danger fullReceipe">Full Recipe</button>
+                            </div>
+                        </div>
+                        <div class="h-100 d-flex flex-column justify-content-center full-receipe position-absolute top-0 d-none">
+                                <div class="ingredients-btn-container py-2 px-3 ">
+                                    <ul class="mb-2">
+                                        <li>
+                                            4 1/2 cups (20.25 ounces) unbleached high-gluten, bread, or all-purpose flour, chilled
+                                        </li>
+                                        <li>
+                                            1 3/4 (.44 ounce) teaspoons salt
+                                        </li>
+                                        <li>
+                                            1 teaspoon (.11 ounce) instant yeast
+                                        </li>
+                                        <li>
+                                            1/4 cup (2 ounces) olive oil (optional)
+                                        </li>
+                                        <li>
+                                            1 3/4 cups (14 ounces) water, ice cold (40F)
+                                        </li>
+                                        <li>
+                                            Semolina flour OR cornmeal for dusting
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-outline-info ms-auto d-block">close</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-12">
+                    <div class="cardo position-relative hov overflow-hidden">
+                        <div class="image-container w-100 h-100 overflow-hidden">
+                            <img src="images/post-1.jpg" class="w-100 h-100 " alt="">
+                        </div>
+                        <div class="text-container position-absolute bg-light bg-opacity-75 h-100 w-100 d-flex flex-column">
+                            <h5 class=" text-capitalize text-center mt-2 flex-grow-1 d-flex align-items-center justify-content-center">title</h5>
+                            <div class="publisher-receipe-container w-100 position-absolute bottom-0 start-0 mb-2 d-flex align-items-center justify-content-around">
+                                <div class="publisher text-center mb-2 d-flex flex-column align-items-center justify-content-center">
+                                    <h5 class="h6 w-fit-content">-- Publisher --</h5>
+                                    <a href="k" class="h6 text-capitalize">Publisher name</a>
+                                </div>
+                                <button class="btn btn-outline-danger fullReceipe">Full Recipe</button>
+                            </div>
+                        </div>
+                        <div class="h-100 d-flex flex-column justify-content-center full-receipe position-absolute top-0 d-none">
+                                <div class="ingredients-btn-container py-2 px-3 ">
+                                    <ul class="mb-2">
+                                        <li>
+                                            4 1/2 cups (20.25 ounces) unbleached high-gluten, bread, or all-purpose flour, chilled
+                                        </li>
+                                        <li>
+                                            1 3/4 (.44 ounce) teaspoons salt
+                                        </li>
+                                        <li>
+                                            1 teaspoon (.11 ounce) instant yeast
+                                        </li>
+                                        <li>
+                                            1/4 cup (2 ounces) olive oil (optional)
+                                        </li>
+                                        <li>
+                                            1 3/4 cups (14 ounces) water, ice cold (40F)
+                                        </li>
+                                        <li>
+                                            Semolina flour OR cornmeal for dusting
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-outline-info ms-auto d-block">close</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-12">
+                    <div class="cardo position-relative hov overflow-hidden">
+                        <div class="image-container w-100 h-100 overflow-hidden">
+                            <img src="images/post-1.jpg" class="w-100 h-100 " alt="">
+                        </div>
+                        <div class="text-container position-absolute bg-light bg-opacity-75 h-100 w-100 d-flex flex-column">
+                            <h5 class=" text-capitalize text-center mt-2 flex-grow-1 d-flex align-items-center justify-content-center">title</h5>
+                            <div class="publisher-receipe-container w-100 position-absolute bottom-0 start-0 mb-2 d-flex align-items-center justify-content-around">
+                                <div class="publisher text-center mb-2 d-flex flex-column align-items-center justify-content-center">
+                                    <h5 class="h6 w-fit-content">-- Publisher --</h5>
+                                    <a href="k" class="h6 text-capitalize">Publisher name</a>
+                                </div>
+                                <button class="btn btn-outline-danger fullReceipe">Full Recipe</button>
+                            </div>
+                        </div>
+                        <div class="h-100 d-flex flex-column justify-content-center full-receipe position-absolute top-0 d-none">
+                                <div class="ingredients-btn-container py-2 px-3 ">
+                                    <ul class="mb-2">
+                                        <li>
+                                            4 1/2 cups (20.25 ounces) unbleached high-gluten, bread, or all-purpose flour, chilled
+                                        </li>
+                                        <li>
+                                            1 3/4 (.44 ounce) teaspoons salt
+                                        </li>
+                                        <li>
+                                            1 teaspoon (.11 ounce) instant yeast
+                                        </li>
+                                        <li>
+                                            1/4 cup (2 ounces) olive oil (optional)
+                                        </li>
+                                        <li>
+                                            1 3/4 cups (14 ounces) water, ice cold (40F)
+                                        </li>
+                                        <li>
+                                            Semolina flour OR cornmeal for dusting
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-outline-info ms-auto d-block">close</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="right-btns d-flex flex-column start-0 top-50 my-5 d-none">
+                <button class="btn btn-primary m-2">Carrot 🥕</button>
+                <button class="btn btn-primary m-2">Broccoli 🥦</button>
+                <button class="btn btn-primary m-2">Asparagus 🥬</button>
+                <button class="btn btn-primary m-2">Cauliflower 🥦</button>
+                <button class="btn btn-primary m-2">Corn 🌽</button>
+                <button class="btn btn-primary m-2">Cucumber 🥒</button>
+                <button class="btn btn-primary m-2">Green Pepper 🫑</button>
+                <button class="btn btn-primary m-2">Lettuce 🥬</button>
+                <button class="btn btn-primary m-2">Mushrooms 🍄</button>
+                <button class="btn btn-primary m-2">Onion 🧅</button>
+                <button class="btn btn-primary m-2">Potato 🥔</button>
+                <button class="btn btn-primary m-2">Pumpkin 🎃</button>
+                <button class="btn btn-primary m-2">Red Pepper 🌶️</button>
+                <button class="btn btn-primary m-2">Tomato 🍅</button>
+                <button class="btn btn-primary m-2">Beetroot 🥕</button>
+                <button class="btn btn-primary m-2">Brussel Sprouts 🥦</button>
+                <button class="btn btn-primary m-2">Peas 🥬</button>
+                <button class="btn btn-primary m-2">Zucchini 🥒</button>
+                <button class="btn btn-primary m-2">Radish 🥕</button>
+                <button class="btn btn-primary m-2">Sweet Potato 🍠</button>
+                <button class="btn btn-primary m-2">Artichoke 🥬</button>
+                <button class="btn btn-primary m-2">Leek 🥬</button>
+                <button class="btn btn-primary m-2">Cabbage 🥬</button>
+                <button class="btn btn-primary m-2">Celery 🥬</button>
+                <button class="btn btn-primary m-2">Chili 🌶️</button>
+                <button class="btn btn-primary m-2">Garlic 🧄</button>
+                <button class="btn btn-primary m-2">Basil 🌿</button>
+                <button class="btn btn-primary m-2">Coriander 🌿</button>
+            </div>
+    </div>
+
+    </main>
+    <footer class="d-flex justify-content-evenly align-items-center">
+        <div class="w-25">
+            <div class="container position-relative">
+                <input type="email" class="form-control" name="subscription email" id="" placeholder="Enter your E-mail to Subscribe">
+                <button class="btn btn-success position-absolute top-0 end-0">Subscribe</button>
+            </div>
+        </div>
+        <div class="text-center d-flex justify-content-evenly align-items-center">
+            <div class="mx-5">
+                <h2 class="display-1 fw-bold">Route</h2>
+                <h4 class="me-2">Eng. Mahmoud Hesham</h4>
+                <h5 class="text-center">Eng. Ahmed Sabry</h5>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <!-- ==================BOOTSTRAP JS ================== -->
+    <script src="JS/bootstrap.bundle.js"></script>
+    <!--==================MAIN JS FILE================== -->
+    <script src="JS/index.js"></script>
+</body>
+</html>
