@@ -183,6 +183,7 @@ buttonsContainer.addEventListener("click",function(e){
 })
 
 function fetchFood(query){
+    sessionStorage.setItem("now",`${query}`)
     return fetch(`https://forkify-api.herokuapp.com/api/search?q=${ query }`)
     .then(res=> res.json())
 
@@ -230,7 +231,7 @@ function displayRecipes(arr) {
 
 
 
-fetchFood(searchInput.value || "pizza")
+fetchFood(searchInput.value || sessionStorage.getItem("now") ||"pizza" )
 .then(function(resultArray){
     displayRecipes(resultArray.recipes)
         btns(foodItemsWithEmojis.filter(item => item.includes(searchInput.value.toLowerCase()))[0])
