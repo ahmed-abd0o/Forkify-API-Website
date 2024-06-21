@@ -17,9 +17,9 @@
 </head>
 <body>
     
-    <div class="loading-layer position-fixed top-0 bottom-0 end-0 start-0 bg-light-subtle z-3 d-flex justify-content-center align-items-center">
+    <!-- <div class="loading-layer position-fixed top-0 bottom-0 end-0 start-0 bg-light-subtle z-3 d-flex justify-content-center align-items-center">
         <div class="loader"></div>
-    </div>
+    </div> -->
 
 
     <main class=" mt-5">
@@ -158,13 +158,13 @@
     </datalist>
 
         <div class="buttons-container d-flex flex-wrap justify-content-center align-items-center">
-            <button class=" btn btn-primary m-2">Carrot 🥕</button>
         </div>
-        <!-- <button class="more-buttons btn btn-outline-success mx-auto d-block mt-3">More Buttons</button>
-        <button class="less-buttons d-none btn btn-success mx-auto d-block mt-3">Less Buttons</button> -->
 
-        <button class="collapse btn btn-outline-success mx-auto mt-2 d-block" clicked="0" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</button>
-        <div class="collapse mx-auto w-75" id="multiCollapseExample1">
+        <button class="collapse btn btn-outline-success mx-auto mt-2 d-block" clicked="0" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Select your Bookmark</button>
+        <div class="alert alert-danger mt-2 w-fit-content mx-auto d-none" role="alert">
+            Maximum Bookmarks
+          </div>
+        <div class="collapse mx-auto w-75 mt-2" id="multiCollapseExample1">
             <div class="all-btns-container card card-body flex-row flex-wrap justify-content-center">
                 <button class="btn btn-primary m-2">Carrot 🥕</button>
                 <button class="btn btn-primary m-2">Broccoli 🥦</button>
@@ -196,43 +196,13 @@
                 <button class="btn btn-primary m-2">Coriander 🌿</button>
             </div>
           </div>
-      
+        <h3 class="current-search w-fit-content mx-auto text-center mt-2">Carrot 🥕</h3>
 
 
         <div class="elbaba d-flex justify-content-evenly">
-            <div class="left-btns d-flex flex-column start-0 top-50 my-5 d-none">
-                <button class="btn btn-primary m-2">Carrot 🥕</button>
-                <button class="btn btn-primary m-2">Broccoli 🥦</button>
-                <button class="btn btn-primary m-2">Asparagus 🥬</button>
-                <button class="btn btn-primary m-2">Cauliflower 🥦</button>
-                <button class="btn btn-primary m-2">Corn 🌽</button>
-                <button class="btn btn-primary m-2">Cucumber 🥒</button>
-                <button class="btn btn-primary m-2">Green Pepper 🫑</button>
-                <button class="btn btn-primary m-2">Lettuce 🥬</button>
-                <button class="btn btn-primary m-2">Mushrooms 🍄</button>
-                <button class="btn btn-primary m-2">Onion 🧅</button>
-                <button class="btn btn-primary m-2">Potato 🥔</button>
-                <button class="btn btn-primary m-2">Pumpkin 🎃</button>
-                <button class="btn btn-primary m-2">Red Pepper 🌶️</button>
-                <button class="btn btn-primary m-2">Tomato 🍅</button>
-                <button class="btn btn-primary m-2">Beetroot 🥕</button>
-                <button class="btn btn-primary m-2">Brussel Sprouts 🥦</button>
-                <button class="btn btn-primary m-2">Peas 🥬</button>
-                <button class="btn btn-primary m-2">Zucchini 🥒</button>
-                <button class="btn btn-primary m-2">Radish 🥕</button>
-                <button class="btn btn-primary m-2">Sweet Potato 🍠</button>
-                <button class="btn btn-primary m-2">Artichoke 🥬</button>
-                <button class="btn btn-primary m-2">Leek 🥬</button>
-                <button class="btn btn-primary m-2">Cabbage 🥬</button>
-                <button class="btn btn-primary m-2">Celery 🥬</button>
-                <button class="btn btn-primary m-2">Chili 🌶️</button>
-                <button class="btn btn-primary m-2">Garlic 🧄</button>
-                <button class="btn btn-primary m-2">Basil 🌿</button>
-                <button class="btn btn-primary m-2">Coriander 🌿</button>
-            </div>
             <div class="container mx-0">
-            <div class="row cards gy-4 mb-5 mt-2">
-                <div class="col-lg-3 col-md-4 col-12">
+            <div class="row cards gy-4 mb-5 mt-1">
+                <div class="col-lg-3  mt-1  col-md-4 col-12">
                     <div class="cardo position-relative hov overflow-hidden">
                         <div class="image-container w-100 h-100 overflow-hidden">
                             <img src="images/post-1.jpg" class="w-100 h-100 " alt="">
@@ -274,7 +244,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-12">
+                <div class="col-lg-3  mt-1 col-md-4 col-12">
                     <div class="cardo position-relative hov overflow-hidden">
                         <div class="image-container w-100 h-100 overflow-hidden">
                             <img src="images/post-1.jpg" class="w-100 h-100 " alt="">
@@ -316,7 +286,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-12">
+                <div class="col-lg-3 mt-1  col-md-4 col-12">
                     <div class="cardo position-relative hov overflow-hidden">
                         <div class="image-container w-100 h-100 overflow-hidden">
                             <img src="images/post-1.jpg" class="w-100 h-100 " alt="">
@@ -358,7 +328,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-12">
+                <div class="col-lg-3 mt-1  col-md-4 col-12">
                     <div class="cardo position-relative hov overflow-hidden">
                         <div class="image-container w-100 h-100 overflow-hidden">
                             <img src="images/post-1.jpg" class="w-100 h-100 " alt="">
@@ -401,36 +371,6 @@
                     </div>
                 </div>
             </div>
-            </div>
-            <div class="right-btns d-flex flex-column start-0 top-50 my-5 d-none">
-                <button class="btn btn-primary m-2">Carrot 🥕</button>
-                <button class="btn btn-primary m-2">Broccoli 🥦</button>
-                <button class="btn btn-primary m-2">Asparagus 🥬</button>
-                <button class="btn btn-primary m-2">Cauliflower 🥦</button>
-                <button class="btn btn-primary m-2">Corn 🌽</button>
-                <button class="btn btn-primary m-2">Cucumber 🥒</button>
-                <button class="btn btn-primary m-2">Green Pepper 🫑</button>
-                <button class="btn btn-primary m-2">Lettuce 🥬</button>
-                <button class="btn btn-primary m-2">Mushrooms 🍄</button>
-                <button class="btn btn-primary m-2">Onion 🧅</button>
-                <button class="btn btn-primary m-2">Potato 🥔</button>
-                <button class="btn btn-primary m-2">Pumpkin 🎃</button>
-                <button class="btn btn-primary m-2">Red Pepper 🌶️</button>
-                <button class="btn btn-primary m-2">Tomato 🍅</button>
-                <button class="btn btn-primary m-2">Beetroot 🥕</button>
-                <button class="btn btn-primary m-2">Brussel Sprouts 🥦</button>
-                <button class="btn btn-primary m-2">Peas 🥬</button>
-                <button class="btn btn-primary m-2">Zucchini 🥒</button>
-                <button class="btn btn-primary m-2">Radish 🥕</button>
-                <button class="btn btn-primary m-2">Sweet Potato 🍠</button>
-                <button class="btn btn-primary m-2">Artichoke 🥬</button>
-                <button class="btn btn-primary m-2">Leek 🥬</button>
-                <button class="btn btn-primary m-2">Cabbage 🥬</button>
-                <button class="btn btn-primary m-2">Celery 🥬</button>
-                <button class="btn btn-primary m-2">Chili 🌶️</button>
-                <button class="btn btn-primary m-2">Garlic 🧄</button>
-                <button class="btn btn-primary m-2">Basil 🌿</button>
-                <button class="btn btn-primary m-2">Coriander 🌿</button>
             </div>
     </div>
 

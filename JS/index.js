@@ -3,10 +3,13 @@ var cards = document.querySelector(".cards")
 var fullReceipeBtn = document.querySelector(".publisher-receipe-container > button");
 var ingredients = document.querySelector(".full-receipe")
 var loadingLayer = document.querySelector(".loading-layer");
-var buttonsContainer = document.querySelector(".buttons-container");
-var allBtnsContainer = document.querySelector(".all-btns-container")
-var collapseBtn = document.querySelector("button.collapse")
-
+var bookmarksContainer = document.querySelector(".buttons-container");
+var allBtnsContainer = document.querySelector(".all-btns-container");
+var collapseBtn = document.querySelector("button.collapse");
+var currentFoodh3 = document.querySelector("h3.current-search");
+var bookmarksAlert = document.querySelector("div.alert.alert-danger")
+var bookmarksArray = [];
+var bookmarkedIndecies = (JSON.parse(sessionStorage.getItem("bookmarkedIndecies"))) || [] ;
 
 // list of all the food with emojis made with ChatGPT
 const foodItemsWithEmojis = [
@@ -38,17 +41,7 @@ const foodItemsWithEmojis = [
     "pepperoni 🍕", "salami 🍖", "ribs 🍖"
 ]
 
-// displaying all buttons in the foldable container
-var allCartoona = ''
-for(var i = 0 ; i < foodItemsWithEmojis.length ; i++){
-    var createdBtn = document.createElement("button");
-    createdBtn.classList.add("btn", "btn-outline-primary",'m-2',"fs-5","flex-shrink-0");
-    createdBtn.innerHTML = foodItemsWithEmojis[i]
-    allCartoona += createdBtn.outerHTML;
-}
-allBtnsContainer.innerHTML = allCartoona ;
-
-
+foodItemsWithEmojis.sort()
 
 // loading layer timer for 1.2S
 function loadingLayerTiming(){
@@ -59,34 +52,26 @@ function loadingLayerTiming(){
     }, 1200);
 };
 
-loadingLayerTiming();
+// loadingLayerTiming();
 
 
-
-
-
-// displaying The top five btns
-function btns(specifiedItem){
-    var specifiedItemIndex = foodItemsWithEmojis.indexOf(specifiedItem);
-    var cartoona = '';
-    var createdElements = [];
-    for(var i = 0 ; i < 5 ; i++){
-        let createdElement = document.createElement("button");
-        createdElement.classList.add("btn", "btn-outline-primary","m-2","fs-5");
-        if(i == 2)
-            createdElement.classList.replace("btn-outline-primary","btn-primary")
-        createdElements.push(createdElement);
+// displaying all buttons in the foldable container
+var allCartoona = ''
+for(var i = 0 ; i < foodItemsWithEmojis.length ; i++){
+    var createdBtn = document.createElement("button");
+    createdBtn.classList.add("btn", "btn-outline-primary",'m-1',"flex-shrink-0");
+    console.log(bookmarkedIndecies,"in display");
+    if(bookmarkedIndecies.includes(i)){
+        console.log("done");
+        createdBtn.classList.replace("btn-outline-primary","btn-primary")
     }
-    createdElements[2].innerHTML = specifiedItem ;
-    createdElements[0].innerHTML = foodItemsWithEmojis[specifiedItemIndex-2] ?? foodItemsWithEmojis[foodItemsWithEmojis.length-2] //if the specified was the first element it gets the last element 
-    createdElements[1].innerHTML = foodItemsWithEmojis[specifiedItemIndex-1] ?? foodItemsWithEmojis[foodItemsWithEmojis.length-1] // and the element before the last one
-    createdElements[3].innerHTML = foodItemsWithEmojis[specifiedItemIndex+1] ?? foodItemsWithEmojis[1] // if the specifed is the last element in the array
-    createdElements[4].innerHTML = foodItemsWithEmojis[specifiedItemIndex+2] ?? foodItemsWithEmojis[2] // if the specifed is the last element in the array
-    for( var i = 0 ; i < createdElements.length ; i++){
-        cartoona += createdElements[i].outerHTML
-    }
-    buttonsContainer.innerHTML = cartoona;
+    createdBtn.innerHTML = foodItemsWithEmojis[i]
+    allCartoona += createdBtn.outerHTML;
 }
+allBtnsContainer.innerHTML = allCartoona ;
+
+
+
 
 
 
@@ -108,7 +93,7 @@ function fetchRecipe(rId){
 
 
 function displayRecipes(arr) {
-    loadingLayerTiming()
+    // loadingLayerTiming()
     var recipesCartoona = '';
     for(var i = 0 ; i < arr.length ; i++)
                 recipesCartoona += `
@@ -164,24 +149,80 @@ function displayIngredients(ingredientsObject){
 // input search functionality
 searchInput.addEventListener("change",function(e){
     var specifiedItem = foodItemsWithEmojis.filter(item => item.includes(searchInput.value.toLowerCase()))[0];
-    btns(specifiedItem)
-    fetchFood(specifiedItem.split(" ")[0])
+    displayCurrentSearch(specifiedItem)
+    fetchFood(deleteLatestElement(specifiedItem))
     .then(res=> displayRecipes(res.recipes))
-    
+
+
 })
 
 
+// display current search in text
+function displayCurrentSearch(specifiedItem){
+    currentFoodh3.innerHTML = specifiedItem ;
+}
 
-// navigating using all buttons + clicking on collapsing button to fold again after choosing the food
+
+
+
+// Controlling Bookmarks 
 allBtnsContainer.addEventListener("click",function(e){
     if(!e.target.classList.contains("all-btns-container")){
-        btns(e.target.innerHTML)
-        loadingLayerTiming()
-        collapseBtn.click()
-        fetchFood(e.target.innerHTML.split(" ")[0])
+            if(bookmarksArray.indexOf(e.target.innerHTML) == -1 ){
+                if(bookmarksArray.length < 5 ){
+                    e.target.classList.replace("btn-outline-primary","btn-primary")
+                    bookmarksArray.push(e.target.innerHTML)
+                    bookmarkedIndecies.push(foodItemsWithEmojis.indexOf(e.target.innerHTML))
+                    sessionStorage.setItem("bookmarkedIndecies",JSON.stringify(bookmarkedIndecies))
+                    console.log(bookmarkedIndecies);
+                    sessionStorage.setItem("bookmarks",JSON.stringify(bookmarksArray))
+                    console.log(e.target.innerHTML);
+                    bookmarksAlert.classList.add("d-none")
+                    dispalyBookmarks();
+                }
+                else{
+                    bookmarksAlert.classList.remove("d-none")
+                    setTimeout(() => {
+                        bookmarksAlert.classList.add("d-none")
+                    }, 2000);
+                }
+            }
+            else{
+                bookmarksAlert.classList.add("d-none")
+                e.target.classList.replace("btn-primary","btn-outline-primary")
+                removeItemByValue(bookmarkedIndecies,(foodItemsWithEmojis.indexOf(e.target.innerHTML)))
+                sessionStorage.setItem("bookmarkedIndecies",JSON.stringify(bookmarkedIndecies))
+                bookmarksArray.splice(bookmarksArray.indexOf(e.target.innerHTML),1)
+                sessionStorage.setItem("bookmarks",JSON.stringify(bookmarksArray))
+                dispalyBookmarks()
+            }
+        }
+        
+    })
+
+
+function dispalyBookmarks(){
+    bookmarksContainer.innerHTML = "";
+        bookmarksArray.forEach((element) => {
+            var createdElement = document.createElement("btn");
+            createdElement.classList.add("btn","btn-outline-info","m-2");
+            createdElement.innerHTML = element;
+            bookmarksContainer.append(createdElement);
+        })
+
+
+}
+
+bookmarksContainer.addEventListener("click",function(e){
+    if(!e.target.classList.contains("buttons-container")){
+        displayCurrentSearch(e.target.innerHTML)
+        fetchFood(deleteLatestElement(e.target.innerHTML))
         .then(res=> displayRecipes(res.recipes))
+        console.log(e.target.innerHTML);
     }
 })
+
+
 
 // changing btn to and from outline when clicked
 collapseBtn.addEventListener("click", function(){
@@ -196,13 +237,8 @@ collapseBtn.addEventListener("click", function(){
 })
 
 // navigating using top buttons
-buttonsContainer.addEventListener("click",function(e){
-    if(!e.target.classList.contains("buttons-container")){
-        btns(e.target.innerHTML)
-        loadingLayerTiming()
-        fetchFood(e.target.innerHTML.split(" ")[0])
-        .then(res=> displayRecipes(res.recipes))
-    }
+currentFoodh3.addEventListener("click",function(e){
+    currentFoodh3.classList.toggle("fw-bolder")
 })
 
 // Displaying ingredients fetching it once and displaying it all the time 
@@ -230,9 +266,39 @@ cards.addEventListener("click", function (e){
 
 
 
+
+
+
+var firstItemInArray = foodItemsWithEmojis.filter(item => item.includes(searchInput.value.toLowerCase() || sessionStorage.getItem("now") || "pizza"))[0];
+
+var cleanedValueForFetch = removeItem(firstItemInArray.split(" ")).join(" ");
+
 // first fetch when opening the Website
-fetchFood(searchInput.value || sessionStorage.getItem("now") ||"pizza" )
+fetchFood(cleanedValueForFetch)
 .then(function(resultArray){
     displayRecipes(resultArray.recipes)
-        btns(foodItemsWithEmojis.filter(item => item.includes(searchInput.value.toLowerCase()))[0])
+    displayCurrentSearch(firstItemInArray)
+    bookmarksArray = JSON.parse(sessionStorage.getItem("bookmarks")) || []
+    dispalyBookmarks()
+
 })
+
+
+
+
+function removeItem(array) {
+    array.pop()
+    return array;
+}
+
+function deleteLatestElement(given){
+    return removeItem(given.split(" ")).join(" ");
+}
+
+function removeItemByValue(array, value) {
+    const index = array.indexOf(value);
+    if (index !== -1) {
+        array.splice(index, 1);
+    }
+    return array;
+}
