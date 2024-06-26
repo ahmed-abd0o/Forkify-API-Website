@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--==================Google Fonts================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <!--==================FONTAWESOME LINK================== -->
     <link rel="stylesheet" href="CSS/all.min.css">
     <!--================== BOOTSTRAP LINK ================== -->
@@ -21,10 +21,12 @@
         <div class="loader"></div>
     </div> -->
 
-
+    <header>
+        <h1 class="display-1 text-center mt-5 fire-sans fw-bolder">Search For Your Receipe</h1>
+    </header>
     <main class=" mt-5">
 
-        <input type="text" class="mx-auto form-control mb-5 w-25" list="ok" placeholder="Search for different recipes">
+        <input type="text" class="mx-auto form-control mb-5 w-50" list="ok" placeholder="Search for different recipes">
         
     <datalist id="ok">
         <option value="Carrot"></option>
@@ -160,7 +162,10 @@
         <div class="buttons-container d-flex flex-wrap justify-content-center align-items-center">
         </div>
 
-        <button class="collapse btn btn-outline-success mx-auto mt-2 d-block" clicked="0" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Select your Bookmark</button>
+        <button class="collapse btn btn-outline-success mx-auto mt-2 d-block" clicked="0" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+            Select your Bookmark
+            <i class="ms-2 fa-regular fa-bookmark"></i>
+        </button>
         <div class="alert alert-danger mt-2 w-fit-content mx-auto d-none" role="alert">
             Maximum Bookmarks
           </div>
@@ -206,6 +211,76 @@
             </div>
     </div>
 
+
+
+
+
+
+
+
+
+    <div class="my-modal position-fixed d-none top-0 start-0 end-0 bottom-0 bg-secondary bg-opacity-50 z-3 d-flex justify-content-center align-items-center ">
+        <div class="recipe-container bg-light rounded-3 container p-0 position-relative">
+
+            <div class="row g-0 h-100 position-relative">
+                <div class="chevron-container fa-2x position-absolute start-0 top-0 d-flex align-items-center h-100 w-100 justify-content-between">
+                    <i class="fa-solid mx-2 fa-chevron-left position-relative z-2"></i>
+                    <i class="fa-solid mx-2 fa-chevron-right position-relative z-2"></i>
+                </div>  
+                <i class="fa-solid fa-xmark fa-2x mx-2 position-absolute end-0 top-0 me-3 position-relative z-2 mt-3 w-fit-content"></i>
+                
+                <div class="col ">
+                    <div class="row h-100 position-relative">
+                        <div class=" offset-lg-1 offset-3 col-lg-10 col-6 d-flex justify-content-center align-items-center flex-column">
+                            <div class="img-container w-100 rounded-3 mt-5 d-flex justify-content-center align-items-center">
+                                <img src="http://forkify-api.herokuapp.com/images/fruitpizza9a19.jpg" alt="" class="w-100 rounded-4 object-fit-cover ">
+                            </div>
+                            <h3 class="text-center my-4 ">Title</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="row h-100 position-relative">
+                        <div class=" col-10 d-flex justify-content-center align-items-center flex-column">
+                            <h2 class="text-start w-100 mb-4" >Ingredients :</h2>
+                            <ul class="list-group w-100 overflow-y-auto overflow-x-hidden">
+                                <li href="#" class="list-group-item list-group-item-action list-group-item-light">A simple default list group item</li>
+                                <li href="#" class="list-group-item list-group-item-action list-group-item-light">A simple primary list group item</li>
+                                <li href="#" class="list-group-item list-group-item-action list-group-item-light">A simple secondary list group item</li>
+                                <li href="#" class="list-group-item list-group-item-action list-group-item-light">A simple success list group item</li>
+                                <li href="#" class="list-group-item list-group-item-action list-group-item-light">A simple danger list group item</li>
+                                <li href="#" class="list-group-item list-group-item-action list-group-item-light">A simple warning list group item</li>
+                                <li href="#" class="list-group-item list-group-item-action list-group-item-light">A simple info list group item</li>
+                                <li href="#" class="list-group-item list-group-item-action list-group-item-light">A simple light list group item</li>
+                                <li href="#" class="list-group-item list-group-item-action list-group-item-light">A simple dark list group item</li>
+                                <li href="#" class="list-group-item list-group-item-action list-group-item-light">A simple dark list group item</li>
+                                <li href="#" class="list-group-item list-group-item-action list-group-item-light">A simple dark list group item</li>
+                                <li href="#" class="list-group-item list-group-item-action list-group-item-light">A simple dark list group item</li>
+                                <li href="#" class="list-group-item list-group-item-action list-group-item-light">A simple dark list group item</li>
+                                <li href="#" class="list-group-item list-group-item-action list-group-item-light">A simple dark list group item</li>
+                                <li href="#" class="list-group-item list-group-item-action list-group-item-light">A simple dark list group item</li>
+                              </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    
     </main>
     <footer class="d-flex justify-content-evenly align-items-center flex-xl-row flex-column">
         <div class="w-50">

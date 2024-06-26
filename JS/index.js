@@ -1,15 +1,21 @@
-var searchInput = document.querySelector("input")
-var cards = document.querySelector(".cards")
-var fullReceipeBtn = document.querySelector(".publisher-receipe-container > button");
-var ingredients = document.querySelector(".full-receipe")
-var loadingLayer = document.querySelector(".loading-layer");
-var bookmarksContainer = document.querySelector(".buttons-container");
-var allBtnsContainer = document.querySelector(".all-btns-container");
-var collapseBtn = document.querySelector("button.collapse");
-var currentFoodh3 = document.querySelector("h3.current-search");
-var bookmarksAlert = document.querySelector("div.alert.alert-danger")
-var bookmarksArray = [];
-var bookmarkedIndecies = (JSON.parse(sessionStorage.getItem("bookmarkedIndecies"))) || [] ;
+
+const searchInput = document.querySelector("input")
+const cards = document.querySelector(".cards")
+const fullReceipeBtn = document.querySelector(".publisher-receipe-container > button");
+const ingredients = document.querySelector(".full-receipe")
+const loadingLayer = document.querySelector(".loading-layer");
+const bookmarksContainer = document.querySelector(".buttons-container");
+const allBtnsContainer = document.querySelector(".all-btns-container");
+const collapseBtn = document.querySelector("button.collapse");
+const currentFoodh3 = document.querySelector("h3.current-search");
+const bookmarksAlert = document.querySelector("div.alert.alert-danger")
+const myModal = document.querySelector("div.my-modal")
+const chevronContainer = document.querySelector("div.my-modal .chevron-container")
+const xMark = document.querySelector("div.my-modal .fa-xmark")
+let bookmarksArray = [];
+const bookmarkedIndecies = (JSON.parse(sessionStorage.getItem("bookmarkedIndecies"))) || [] ;
+let currentRecipes = []
+
 
 // list of all the food with emojis made with ChatGPT
 const foodItemsWithEmojis = [
@@ -94,6 +100,7 @@ function fetchRecipe(rId){
 
 function displayRecipes(arr) {
     // loadingLayerTiming()
+    searchInput.value = ""
     var recipesCartoona = '';
     for(var i = 0 ; i < arr.length ; i++)
                 recipesCartoona += `
@@ -109,7 +116,7 @@ function displayRecipes(arr) {
                                         <h5 class="h6 w-fit-content">-- Publisher --</h5>
                                         <a href="${arr[i].publisher_url}" target="_blank" class="h6 text-capitalize">${arr[i].publisher}</a>
                                     </div>
-                                    <button class="btn btn-outline-danger fw-bold">ingredients</button>
+                                    <button class="btn btn-outline-danger fw-bold" idx="${i}">ingredients</button>
                                 </div>
                             </div>
                             <div class="h-100 d-flex flex-column justify-content-center full-receipe position-absolute top-0 d-none" receipeId="${arr[i].recipe_id}">
@@ -132,16 +139,14 @@ function displayRecipes(arr) {
 function displayIngredients(ingredientsObject){
     var ingredientsArray = ingredientsObject.recipe.ingredients ;
     var list = document.createElement("ul")
-    list.classList.add("mb-2","list-group", "list-group-flush", "overflow-auto")
+    list.classList.add("list-group", "w-100")
     for(var i = 0 ; i<ingredientsArray.length ; i++){
         var li = document.createElement("li");
-        li.classList.add("list-group-item","bg-transparent")
+        li.classList.add("list-group-item","list-group-item-action","list-group-item-light","overflowy-auto") 
         li.innerHTML = ingredientsArray[i]
         list.append(li) ;
     }
     return list ;
-
-
 
 }
 
@@ -162,6 +167,7 @@ function displayCurrentSearch(specifiedItem){
     currentFoodh3.innerHTML = specifiedItem ;
 }
 
+console.log("okkkk")
 
 
 
@@ -236,26 +242,25 @@ collapseBtn.addEventListener("click", function(){
     }
 })
 
-// navigating using top buttons
-currentFoodh3.addEventListener("click",function(e){
-    currentFoodh3.classList.toggle("fw-bolder")
-})
+
 
 // Displaying ingredients fetching it once and displaying it all the time 
 cards.addEventListener("click", function (e){
     if(e.target.classList.contains("btn-outline-danger")){
-        var ingredientsLayer = e.target.parentElement.parentElement.nextElementSibling ;
+        let index = e.target.getAttribute("idx")
+        modalData(index , currentRecipes)
+        document.body.classList.add("overflow-hidden")
         if(e.target.getAttribute("done") == "1"){
             ingredientsLayer.classList.remove("d-none");
         }
-        else{
-            e.target.setAttribute("done","1")
-            fetchRecipe(ingredientsLayer.getAttribute("receipeid"))
-            .then((res)=> {
-                ingredientsLayer.querySelector(".ingredients-btn-container").prepend(displayIngredients(res))
-                ingredientsLayer.classList.remove("d-none");
-        })
-        }
+        // else{
+        //     e.target.setAttribute("done","1")
+        //     fetchRecipe(ingredientsLayer.getAttribute("receipeid"))
+        //     .then((res)=> {
+        //         ingredientsLayer.querySelector(".ingredients-btn-container").prepend(displayIngredients(res))
+        //         ingredientsLayer.classList.remove("d-none");
+        // })
+        // }
 
     }
     
@@ -264,25 +269,63 @@ cards.addEventListener("click", function (e){
     }
 })
 
+function modalData(idx, arr){
+    let currentObject = arr[idx]
+    console.log(currentObject)
+    myModal.querySelector(".img-container img").setAttribute("src",currentObject.image_url)
+    fetchRecipe(currentObject.recipe_id)
+    .then((res)=>{
+        myModal.querySelector("ul").innerHTML = displayIngredients(res).innerHTML
+        myModal.classList.remove("d-none")
+        myModal.querySelector("h3").innerHTML = currentObject.title
+    })
+}
+
+myModal.addEventListener("click", e =>{
+    console.log();
+    if(e.target==myModal){
+        myModal.classList.add("d-none")
+        document.body.classList.remove("overflow-hidden")
+    }
+})
+
+document.addEventListener("keydown",(e)=>{
+    if(e.key == "Escape")
+        myModal.classList.add("d-none")
+    document.body.classList.remove("overflow-hidden")
+})
+xMark.addEventListener("click", e=> {
+    myModal.classList.add("d-none")
+    document.body.classList.remove("overflow-hidden")
+})
+
+chevronContainer.addEventListener("click", (e)=>{
+    if(e.target.classList.contains("fa-chevron-right")){
+        console.log("next");
+        console.log(currentRecipes)
+    }
+    if(e.target.classList.contains("fa-chevron-left")){
+        console.log("left");
+    }
+})
 
 
 
 
-
-var firstItemInArray = foodItemsWithEmojis.filter(item => item.includes(searchInput.value.toLowerCase() || sessionStorage.getItem("now") || "pizza"))[0];
-
+var firstItemInArray = foodItemsWithEmojis.filter(item => item.includes(sessionStorage.getItem("now") ||searchInput.value.toLowerCase()  || "pizza"))[0];
 var cleanedValueForFetch = removeItem(firstItemInArray.split(" ")).join(" ");
 
 // first fetch when opening the Website
+
 fetchFood(cleanedValueForFetch)
 .then(function(resultArray){
+    currentRecipes = resultArray.recipes;
+    console.log(currentRecipes);
     displayRecipes(resultArray.recipes)
     displayCurrentSearch(firstItemInArray)
     bookmarksArray = JSON.parse(sessionStorage.getItem("bookmarks")) || []
     dispalyBookmarks()
-
 })
-
 
 
 
@@ -302,3 +345,4 @@ function removeItemByValue(array, value) {
     }
     return array;
 }
+
