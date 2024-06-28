@@ -307,9 +307,17 @@ myModal.addEventListener("click", e =>{
 })
 
 document.addEventListener("keydown",(e)=>{
-    if(e.key == "Escape")
+    if(e.key == "Escape"){
         myModal.classList.add("d-none")
-    document.body.classList.remove("overflow-hidden")
+        document.body.classList.remove("overflow-hidden")
+    }
+    if(e.key == "ArrowRight"){
+        chevronContainer.querySelector(".fa-chevron-right").click()
+    }
+    if(e.key == "ArrowLeft"){
+        chevronContainer.querySelector(".fa-chevron-left").click()
+
+    }
 })
 xMark.addEventListener("click", e=> {
     myModal.classList.add("d-none")
