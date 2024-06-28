@@ -15,6 +15,7 @@ const xMark = document.querySelector("div.my-modal .fa-xmark")
 let bookmarksArray = [];
 const bookmarkedIndecies = (JSON.parse(sessionStorage.getItem("bookmarkedIndecies"))) || [] ;
 let currentRecipes = []
+let index = 0 ;
 
 
 // list of all the food with emojis made with ChatGPT
@@ -66,7 +67,6 @@ var allCartoona = ''
 for(var i = 0 ; i < foodItemsWithEmojis.length ; i++){
     var createdBtn = document.createElement("button");
     createdBtn.classList.add("btn", "btn-outline-primary",'m-1',"flex-shrink-0");
-    console.log(bookmarkedIndecies,"in display");
     if(bookmarkedIndecies.includes(i)){
         console.log("done");
         createdBtn.classList.replace("btn-outline-primary","btn-primary")
@@ -156,7 +156,12 @@ searchInput.addEventListener("change",function(e){
     var specifiedItem = foodItemsWithEmojis.filter(item => item.includes(searchInput.value.toLowerCase()))[0];
     displayCurrentSearch(specifiedItem)
     fetchFood(deleteLatestElement(specifiedItem))
-    .then(res=> displayRecipes(res.recipes))
+    .then(res=> {
+        currentRecipes = res.recipes
+        console.log(res.recipes);
+        displayRecipes(res.recipes)
+
+    })
 
 
 })
@@ -223,8 +228,11 @@ bookmarksContainer.addEventListener("click",function(e){
     if(!e.target.classList.contains("buttons-container")){
         displayCurrentSearch(e.target.innerHTML)
         fetchFood(deleteLatestElement(e.target.innerHTML))
-        .then(res=> displayRecipes(res.recipes))
-        console.log(e.target.innerHTML);
+        .then(res=> {
+            displayRecipes(res.recipes)
+            currentRecipes = res.recipes
+            console.log(currentRecipes);
+        })
     }
 })
 
@@ -242,12 +250,14 @@ collapseBtn.addEventListener("click", function(){
     }
 })
 
+function displayRecipes24(idx , arr){
 
+}
 
 // Displaying ingredients fetching it once and displaying it all the time 
 cards.addEventListener("click", function (e){
     if(e.target.classList.contains("btn-outline-danger")){
-        let index = e.target.getAttribute("idx")
+        let index = Number(e.target.getAttribute("idx"))
         modalData(index , currentRecipes)
         document.body.classList.add("overflow-hidden")
         if(e.target.getAttribute("done") == "1"){
@@ -273,6 +283,9 @@ function modalData(idx, arr){
     let currentObject = arr[idx]
     console.log(currentObject)
     myModal.querySelector(".img-container img").setAttribute("src",currentObject.image_url)
+    chevronContainer.setAttribute("prev",`${ idx-1 < 0 ? arr.length-1 : idx-1 }`);
+    chevronContainer.setAttribute("current",`${idx}`);
+    chevronContainer.setAttribute("next",`${ idx + 1 > arr.length-1 ? 0 : idx+1 }`);
     fetchRecipe(currentObject.recipe_id)
     .then((res)=>{
         myModal.querySelector("ul").innerHTML = displayIngredients(res).innerHTML
@@ -281,9 +294,13 @@ function modalData(idx, arr){
     })
 }
 
+
+
+
+
 myModal.addEventListener("click", e =>{
     console.log();
-    if(e.target==myModal){
+    if(e.target == myModal){
         myModal.classList.add("d-none")
         document.body.classList.remove("overflow-hidden")
     }
@@ -303,9 +320,13 @@ chevronContainer.addEventListener("click", (e)=>{
     if(e.target.classList.contains("fa-chevron-right")){
         console.log("next");
         console.log(currentRecipes)
+        modalData(Number(chevronContainer.getAttribute("next")),currentRecipes)
+        console.log(Number(chevronContainer.getAttribute("next")))
+        
     }
     if(e.target.classList.contains("fa-chevron-left")){
         console.log("left");
+        modalData(Number(chevronContainer.getAttribute("prev")),currentRecipes)
     }
 })
 

@@ -93,8 +93,15 @@ footer{
 }
 
 .my-modal .img-container{
-    height: 300px;
     overflow: hidden;
+    min-width: 500px;
+    min-height: 320px;
+}
+.my-modal .img-container img{
+    min-width: 250px;
+    max-width: 500px;
+    max-height: 320px;
+    min-height: 260px;
 }
 .recipe-container {
     height: 600px;
